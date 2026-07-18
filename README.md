@@ -159,6 +159,28 @@ Features:
 
 ---
 
+## 🌐 API Integration
+
+This project uses **DummyJSON API** as a mock REST API service for fetching product data.
+
+Implemented API operations:
+
+- Fetch products
+- Fetch product details by ID
+- Fetch product categories
+- Product search and filtering
+- Sorting and pagination handling
+
+The frontend handles:
+
+- API state management using TanStack React Query
+- Loading states
+- Error handling
+- Data caching
+- Optimized API requests
+
+---
+
 # 🧰 Tech Stack
 
 ## Frontend
@@ -186,6 +208,13 @@ Features:
 
 - Axios
 - REST API
+
+## API & Data Handling
+
+- DummyJSON REST API
+- Axios
+- TanStack React Query
+- Client-side filtering and pagination
 
 ## Development Tools
 
@@ -272,6 +301,14 @@ Implemented:
 
 ---
 
+## Data Handling Approach
+
+Since DummyJSON is used as a mock API, advanced filtering, sorting, and pagination logic are implemented on the frontend after fetching product data.
+
+In a production application, these operations would typically be handled through backend APIs with database queries and server-side pagination.
+
+---
+
 # 📦 Installation
 
 Clone the repository:
@@ -291,6 +328,7 @@ npm run dev
 Build production:
 
 npm run build
+
 🌱 Environment Variables
 
 Create .env file:
@@ -315,6 +353,7 @@ Zustand
 React Query
 
 ⭐ Future Improvements
+
 Authentication & Authorization
 Admin roles and permissions
 Product CRUD operations
