@@ -58,8 +58,6 @@ export default function StatCard({ title, value, icon: Icon }: StatCardProps) {
         <div className="h-1 w-16 rounded-full bg-purple-100">
           <div className="h-1 w-8 rounded-full bg-[#aa3bff]" />
         </div>
-
-        <span className="text-xs font-medium text-gray-400">Live</span>
       </div>
     </div>
   );

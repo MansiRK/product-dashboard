@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   RiStarFill,
@@ -12,21 +12,31 @@ import {
   RiShoppingCartLine,
 } from "react-icons/ri";
 import { RiHeartFill } from "react-icons/ri";
-import { api } from "../services/api";
-import type { Product } from "../types/product";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../store/cartStore";
 import { useWishlistStore } from "../store/wishlistStore";
 import { toast } from "react-hot-toast";
 import ProductDetailSkeleton from "../components/skeletons/ProductDetailSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProductById } from "../services/productService";
 
 export default function ProductDetail() {
   const { id } = useParams();
+
   const navigate = useNavigate();
 
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const {
+    data: product,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["product", id],
+
+    queryFn: () => fetchProductById(id!),
+
+    enabled: !!id,
+  });
 
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 
@@ -57,6 +67,14 @@ export default function ProductDetail() {
     : false;
 
   const handleAddToCart = () => {
+    if (isError) {
+      return (
+        <div className="p-10 text-center text-red-500">
+          Failed to load product details
+        </div>
+      );
+    }
+
     if (!product) return;
 
     if (isInCart) {
@@ -68,23 +86,7 @@ export default function ProductDetail() {
     toast.success("Added to cart");
   };
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const { data } = await api.get(`/products/${id}`);
-
-        setProduct(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
-
-  if (loading) {
+  if (isLoading) {
     return <ProductDetailSkeleton />;
   }
 

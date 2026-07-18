@@ -86,14 +86,14 @@ export default function Filters({
         left-0
         right-0
         bg-white
-        rounded-t-3xl
+        rounded-t-2xl
         p-6
         shadow-xl
         animate-slide-up
         "
           >
             <div className="flex justify-between items-center mb-5">
-              <h2 className="text-xl font-semibold">Filters</h2>
+              <h4 className="text-xl font-semibold">Filters</h4>
 
               <button onClick={() => setShowFilters?.(false)}>
                 <RiCloseLine size={25} />
@@ -112,9 +112,9 @@ export default function Filters({
           bg-gray-50
           border
           rounded-xl
-          px-4
-          py-3
-          mb-4
+          px-2
+          py-2
+          mb-2
           "
             >
               <option value="">All Categories</option>
@@ -138,9 +138,9 @@ export default function Filters({
           bg-gray-50
           border
           rounded-xl
-          px-4
-          py-3
-          mb-4
+          px-2
+          py-2
+          mb-2
           "
             >
               <option value="">All Prices</option>
@@ -170,9 +170,9 @@ export default function Filters({
           bg-gray-50
           border
           rounded-xl
-          px-4
-          py-3
-          mb-6
+          px-2
+          py-2
+          mb-2
           "
             >
               <option value="">Sort By</option>
@@ -193,7 +193,7 @@ export default function Filters({
             flex-1
             border
             rounded-xl
-            py-3
+            py-2 text-[15px]
             "
               >
                 Reset
@@ -214,7 +214,7 @@ flex-1
 bg-[#aa3bff]
 text-white
 rounded-xl
-py-3
+py-2 text-[15px]
 "
               >
                 Apply

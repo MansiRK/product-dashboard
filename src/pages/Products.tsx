@@ -2,19 +2,15 @@ import { useEffect, useState } from "react";
 import { api } from "../services/api";
 import ProductCard from "../components/ProductCard";
 import Filters from "../components/Filters";
-import type { Product } from "../types/product";
-import type { Category } from "../types/category";
-import { RiSearchLine } from "react-icons/ri";
+import { RiSearchLine, RiFilter3Line } from "react-icons/ri";
 import ProductSkeleton from "../components/skeletons/ProductSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProducts } from "../services/productService";
 
 const LIMIT = 4;
 
 export default function Products() {
-  const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState(1);
-  const [totalProducts, setTotalProducts] = useState(0);
-  const [loading, setLoading] = useState(false);
-
   const [view, setView] = useState<"grid" | "list">("grid");
 
   const [category, setCategory] = useState("");
@@ -22,113 +18,59 @@ export default function Products() {
   const [priceRange, setPriceRange] = useState("");
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-
-  const [categories, setCategories] = useState<Category[]>([]);
   const [showFilters, setShowFilters] = useState(false);
 
   const [tempCategory, setTempCategory] = useState("");
   const [tempPriceRange, setTempPriceRange] = useState("");
   const [tempSort, setTempSort] = useState("");
 
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["products", page, category, sort, priceRange, debouncedSearch],
+
+    queryFn: () =>
+      fetchProducts({
+        page,
+        category,
+        sort,
+        priceRange,
+        search: debouncedSearch,
+      }),
+  });
+
+  const products = data?.products ?? [];
+
+  const totalProducts = data?.totalProducts ?? 0;
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
       setPage(1);
-    }, 500);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [search]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
+  const { data: categoryData } = useQuery({
+    queryKey: ["categories"],
 
-        const skip = (page - 1) * LIMIT;
-
-        let url = `/products?limit=100`;
-
-        if (category) {
-          url = `/products/category/${category}?limit=100`;
-        }
-
-        if (sort === "price-low") {
-          url += "&sortBy=price&order=asc";
-        }
-
-        if (sort === "price-high") {
-          url += "&sortBy=price&order=desc";
-        }
-
-        if (sort === "rating") {
-          url += "&sortBy=rating&order=desc";
-        }
-
-        if (sort === "name") {
-          url += "&sortBy=title&order=asc";
-        }
-
-        const { data } = await api.get(url);
-
-        let filteredProducts: Product[] = [...data.products];
-
-        if (debouncedSearch.trim()) {
-          const searchTerm = debouncedSearch.toLowerCase();
-
-          filteredProducts = filteredProducts.filter((product: Product) => {
-            return (
-              product.title?.toLowerCase().includes(searchTerm) ||
-              product.brand?.toLowerCase().includes(searchTerm) ||
-              product.category?.toLowerCase().includes(searchTerm) ||
-              product.description?.toLowerCase().includes(searchTerm) ||
-              product.tags?.some((tag) =>
-                tag.toLowerCase().includes(searchTerm),
-              ) ||
-              product.price.toString().includes(searchTerm)
-            );
-          });
-        }
-
-        if (priceRange) {
-          const [min, max] = priceRange.split("-").map(Number);
-
-          filteredProducts = filteredProducts.filter((product) => {
-            if (priceRange === "1000+") {
-              return product.price >= 1000;
-            }
-
-            return product.price >= min && product.price <= max;
-          });
-        }
-
-        setTotalProducts(filteredProducts.length);
-
-        // Pagination after filtering
-
-        const paginatedProducts = filteredProducts.slice(skip, skip + LIMIT);
-
-        setProducts(paginatedProducts);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [page, category, sort, priceRange, debouncedSearch]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
+    queryFn: async () => {
       const { data } = await api.get("/products/categories");
 
-      setCategories(data);
-    };
+      return data;
+    },
+  });
 
-    fetchCategories();
-  }, []);
+  const categories = categoryData ?? [];
 
   const totalPages = Math.ceil(totalProducts / LIMIT);
+
+  if (isError) {
+    return (
+      <div className="p-10 text-center text-red-500">
+        Failed to load products
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -150,7 +92,7 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="md:hidden fixed bottom-5 left-5 right-5 z-40">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40">
         <button
           onClick={() => setShowFilters(true)}
           className="
@@ -158,12 +100,13 @@ w-full
 bg-[#aa3bff]
 text-white
 py-3
-rounded-2xl
+rounded-t-2xl
+border
 shadow-lg
-font-semibold
+font-semibold flex items-center justify-center gap-3
 "
         >
-          ⚙ Filters
+          <RiFilter3Line fontSize={20} /> Filters
         </button>
       </div>
 
@@ -190,7 +133,7 @@ font-semibold
         setTempSort={setTempSort}
       />
 
-      {loading ? (
+      {isLoading ? (
         <ProductSkeleton view={view} />
       ) : products.length > 0 ? (
         <ProductCard products={products} view={view} />

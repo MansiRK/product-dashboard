@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   RiShoppingBag3Line,
   RiShoppingCartLine,
@@ -12,43 +11,26 @@ import {
   RiErrorWarningLine,
   RiUserSmileLine,
 } from "react-icons/ri";
-import { api } from "../services/api";
 import { useCartStore } from "../store/cartStore";
 import { useWishlistStore } from "../store/wishlistStore";
 import StatCard from "../components/StatCard";
-import type { Product } from "../types/product";
 import CardSkeleton from "../components/skeletons/CardSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { fetchDashboardData } from "../services/dashboardService";
 
 export default function Dashboard() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
-
   const cart = useCartStore((state) => state.cart);
   const wishlist = useWishlistStore((state) => state.wishlist);
 
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["dashboard"],
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
+    queryFn: fetchDashboardData,
+  });
 
-        const [productsRes, categoriesRes] = await Promise.all([
-          api.get("/products"),
-          api.get("/products/categories"),
-        ]);
+  const products = data?.products ?? [];
 
-        setProducts(productsRes.data.products);
-        setCategories(categoriesRes.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const categories = data?.categories ?? [];
 
   const totalProducts = products.length;
 
@@ -87,6 +69,14 @@ export default function Dashboard() {
 
   const mostWishlisted = wishlist.length > 0 ? wishlist[0].title : "None";
 
+  if (isError) {
+    return (
+      <div className="p-10 text-center text-red-500">
+        Failed to load dashboard data
+      </div>
+    );
+  }
+
   return (
     <div>
       {/* Header */}
@@ -107,7 +97,7 @@ export default function Dashboard() {
       {/* Stats */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {loading ? (
+        {isLoading ? (
           Array.from({ length: 12 }).map((_, index) => (
             <CardSkeleton key={index} />
           ))
