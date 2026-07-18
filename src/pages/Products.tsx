@@ -134,9 +134,13 @@ export default function Products() {
     <div>
       <div className="mb-8 lg:flex md:flex block justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Products</h1>
+          <h1 className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-800">
+            Products
+          </h1>
 
-          <p className="text-gray-500 mt-1">Manage and explore all products</p>
+          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+            Manage and explore all products
+          </p>
         </div>
 
         <div className="bg-white shadow-sm px-5 py-3 rounded-xl lg:mt-0 md:mt-0 mt-3">
@@ -233,6 +237,8 @@ font-semibold
         <div
           className="
 flex justify-center items-center gap-3 mt-12
+  pb-24
+  md:pb-0
 "
         >
           <button

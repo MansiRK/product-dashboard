@@ -17,7 +17,7 @@ export default function StatCard({ title, value, icon: Icon }: StatCardProps) {
       border
       border-gray-100
       bg-white
-      p-6
+      lg:p-6 md:p-6 p-4
       shadow-sm
       transition-all
       duration-300

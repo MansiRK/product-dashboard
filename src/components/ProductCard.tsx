@@ -4,7 +4,6 @@ import {
   RiEyeLine,
   RiStarFill,
   RiBox3Line,
-  RiMoneyDollarCircleLine,
 } from "react-icons/ri";
 
 import type { Product } from "../types/product";
@@ -45,7 +44,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
             <img
               src={product.thumbnail}
               alt={product.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
 
             <span
@@ -63,10 +62,10 @@ export default function ProductCard({ products, view }: ProductCardProps) {
 
           <div
             className={`
-            ${view === "list" ? "flex-1" : "p-5"}
+            ${view === "list" ? "flex-1" : "lg:p-5 md:p-4 p-3"}
             `}
           >
-            <div className="flex justify-between ps-4">
+            <div className="flex justify-between gap-2">
               <div className="text-left">
                 <span
                   className="
@@ -83,7 +82,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
 
                 <h2
                   className="
-                text-lg font-semibold mt-3
+                lg:text-[20px] md:text-[20px] text-[18px] leading-base font-semibold mt-3
                 text-gray-800
                 "
                 >
@@ -92,8 +91,8 @@ export default function ProductCard({ products, view }: ProductCardProps) {
 
                 <p
                   className="
-                text-sm text-gray-500
-                mt-1
+                lg:text-[16px] md:text-[15px] text-[14px] text-gray-500
+                mt-2
                 "
                 >
                   {product.brand}
@@ -118,65 +117,70 @@ export default function ProductCard({ products, view }: ProductCardProps) {
 
             {view === "list" ? (
               // LIST VIEW STATS
-              <div className="flex flex-wrap gap-4 mt-5 ps-4">
-                {/* Rating */}
-                <div className="flex items-center gap-3 bg-yellow-50 px-4 py-3 rounded-xl">
-                  <RiStarFill className="text-yellow-500" size={20} />
+              <div className="flex items-center justify-between mt-6">
+                {/* Left stats */}
+                <div className="flex gap-4">
+                  {/* Rating */}
+                  <div className="flex items-center gap-3 bg-yellow-50 px-4 py-3 rounded-xl">
+                    <RiStarFill className="text-yellow-500" size={20} />
 
-                  <div>
-                    <p className="text-xs text-gray-400">Rating</p>
+                    <div>
+                      <p className="text-xs text-gray-400">Rating</p>
 
-                    <p className="font-semibold">{product.rating}/5</p>
+                      <p className="font-semibold">{product.rating}/5</p>
+                    </div>
                   </div>
-                </div>
 
-                {/* Stock */}
-                <div className="flex items-center gap-3 bg-green-50 px-4 py-3 rounded-xl">
-                  <RiBox3Line className="text-green-600" size={20} />
+                  {/* Stock */}
+                  <div className="flex items-center gap-3 bg-green-50 px-4 py-3 rounded-xl">
+                    <RiBox3Line className="text-green-600" size={20} />
 
-                  <div>
-                    <p className="text-xs text-gray-400">Stock</p>
+                    <div>
+                      <p className="text-xs text-gray-400">Stock</p>
 
-                    <p className="font-semibold text-sm">{product.stock}</p>
+                      <p className="font-semibold">{product.stock}</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Price */}
-                <div className="flex items-center gap-3 bg-purple-50 px-4 py-3 rounded-xl">
-                  <RiMoneyDollarCircleLine
-                    className="text-[#aa3bff]"
-                    size={22}
-                  />
+                <div className="text-right">
+                  <p className="text-sm text-gray-400">Price</p>
 
-                  <div>
-                    <p className="text-xs text-gray-400">Price</p>
-
-                    <p className="font-bold text-[#aa3bff]">${product.price}</p>
-                  </div>
+                  <p className="lg:text-3xl md:text-2xl text-xl font-bold text-[#aa3bff]">
+                    ${product.price}
+                  </p>
                 </div>
               </div>
             ) : (
               // GRID VIEW STATS
 
-              <div className="flex justify-between items-center mt-4">
-                {/* Rating */}
-                <div
-                  className="
+              <div className="mt-4">
+                {/* Price */}
+                <p className="text-2xl font-bold text-[#aa3bff]">
+                  ${product.price}
+                </p>
+
+                <div className="flex justify-between items-center mt-3">
+                  {/* Rating */}
+                  <div
+                    className="
       flex items-center gap-1
       bg-yellow-50
       px-3 py-1.5
       rounded-full
       "
-                >
-                  <RiStarFill className="text-yellow-500" size={16} />
+                  >
+                    <RiStarFill className="text-yellow-500" size={16} />
 
-                  <span className="text-sm font-medium">{product.rating}</span>
-                </div>
+                    <span className="text-sm font-medium">
+                      {product.rating}
+                    </span>
+                  </div>
 
-                {/* Stock */}
-
-                <span
-                  className={`
+                  {/* Stock */}
+                  <span
+                    className={`
       text-xs px-3 py-1 rounded-full
       ${
         product.stock > 0
@@ -184,15 +188,16 @@ export default function ProductCard({ products, view }: ProductCardProps) {
           : "bg-red-100 text-red-600"
       }
       `}
-                >
-                  {product.stock > 0 ? "In Stock" : "Out"}
-                </span>
+                  >
+                    {product.stock > 0 ? "In Stock" : "Out"}
+                  </span>
+                </div>
               </div>
             )}
             {/* Actions */}
 
             <div
-              className={` flex gap-6 mt-5 ps-4 items-center ${view === "grid" ? "justify-between" : "justify-start"}`}
+              className={` flex gap-6 mt-5 items-center ${view === "grid" ? "justify-between" : "justify-start"}`}
             >
               <button
                 className="

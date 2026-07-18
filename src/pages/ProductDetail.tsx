@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../store/cartStore";
 import { useWishlistStore } from "../store/wishlistStore";
 import { toast } from "react-hot-toast";
+import ProductDetailSkeleton from "../components/skeletons/ProductDetailSkeleton";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -84,7 +85,7 @@ export default function ProductDetail() {
   }, [id]);
 
   if (loading) {
-    return <div className="p-10 text-center">Loading product details...</div>;
+    return <ProductDetailSkeleton />;
   }
 
   if (!product) {
@@ -107,9 +108,11 @@ export default function ProductDetail() {
         </button>
 
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Product Details</h1>
+          <h1 className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-800">
+            Product Details
+          </h1>
 
-          <p className="text-gray-500 lg:mt-3">
+          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
             View complete product information
           </p>
         </div>
@@ -120,7 +123,7 @@ export default function ProductDetail() {
         bg-white
         rounded-3xl
         shadow-sm
-        p-8
+        lg:p-8 md:p-6 p-4
         grid
         lg:grid-cols-2
         gap-10
@@ -141,8 +144,8 @@ export default function ProductDetail() {
               src={product.images?.[0] || product.thumbnail}
               alt={product.title}
               className="
-              w-full
-              h-full
+              lg:w-full md:w-full w-[350px]
+              lg:h-full md:h-full h-[350px]
               object-contain
               "
             />
@@ -187,7 +190,7 @@ export default function ProductDetail() {
 
           <h2
             className="
-            text-4xl
+            lg:text-4xl md:text-3xl text-2xl
             font-bold
             mt-5
             text-gray-800
@@ -196,7 +199,7 @@ export default function ProductDetail() {
             {product.title}
           </h2>
 
-          <p className="text-gray-500 mt-3 leading-relaxed">
+          <p className="text-gray-500 mt-3 leading-relaxed lg:text-[16px] md:text-[15px] text-[14px]">
             {product.description}
           </p>
 
@@ -205,7 +208,7 @@ export default function ProductDetail() {
           <div className="flex items-center gap-8 mt-6">
             <p
               className="
-              text-[35px]
+              lg:text-[35px] md:text-[30px] text-[25px]
               font-bold
               text-[#aa3bff]
               "
@@ -220,7 +223,7 @@ export default function ProductDetail() {
               px-3
               py-1
               rounded-full
-              text-sm
+              lg:text-[15px] md:text-[15px] text-[13px]
               "
             >
               {product.discountPercentage}% OFF
@@ -230,7 +233,9 @@ export default function ProductDetail() {
           <div className="mt-8 space-y-4">
             {/* Quantity */}
             <div className="flex items-center justify-start gap-8 mt-6">
-              <span className="font-medium text-gray-700">Quantity</span>
+              <span className="font-medium text-gray-700 lg:text-[16px] md:text-[15px] text-[14px]">
+                Quantity
+              </span>
 
               <div className="flex items-center overflow-hidden rounded-xl border border-gray-200 bg-white">
                 <button
@@ -240,7 +245,7 @@ export default function ProductDetail() {
                   −
                 </button>
 
-                <span className="w-12 text-center font-semibold">
+                <span className="w-12 text-center font-semibold lg:text-[16px] md:text-[15px] text-[14px]">
                   {quantity}
                 </span>
 
@@ -257,7 +262,7 @@ export default function ProductDetail() {
             <div className="flex gap-4">
               <button
                 onClick={handleWishlist}
-                className={`flex-1 h-14 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:cursor-pointer
+                className={`flex-1 lg:h-14 md:h-14 h-12 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:cursor-pointer
       ${
         isWishlisted
           ? "bg-white border border-purple-200 text-[#aa3bff]"
@@ -277,7 +282,7 @@ export default function ProductDetail() {
                 onClick={handleAddToCart}
                 disabled={isInCart}
                 className={`
-    flex-1 h-14 rounded-2xl font-semibold
+    flex-1 lg:h-14 md:h-14 h-12 rounded-2xl font-semibold
     flex items-center justify-center gap-2
     transition-all duration-300
 
@@ -301,7 +306,7 @@ export default function ProductDetail() {
             className="
             grid
             grid-cols-2
-            gap-4
+            lg:gap-4 md:gap-4 gap-2
             mt-8
             "
           >
@@ -374,18 +379,20 @@ export default function ProductDetail() {
         pt-6
         "
           >
-            <h2 className="font-semibold text-xl mb-4">Tags</h2>
+            <h2 className="font-semibold lg:text-[16px] md:text-[15px] text-[14px] mb-4">
+              Tags
+            </h2>
 
             <div className="flex flex-wrap gap-3">
               {product.tags?.map((tag) => (
                 <span
                   key={tag}
                   className="
-              px-4
-              py-2
+              lg:px-4 md:px-4 px-2
+              lg:py-2 md:py-2 py-1
               bg-gray-100
               rounded-full
-              text-sm
+               lg:text-[14px] md:text-[14px] text-[12px]
               text-gray-700
               "
                 >
@@ -406,12 +413,16 @@ function InfoCard({ title, value }: { title: string; value: React.ReactNode }) {
       className="
 bg-gray-50
 rounded-xl
-p-4
+lg:p-3 md:p-3 p-2
 "
     >
-      <p className="text-sm text-gray-500">{title}</p>
+      <p className="text-sm text-gray-500  lg:text-[16px] md:text-[15px] text-[14px]">
+        {title}
+      </p>
 
-      <p className="font-semibold mt-1">{value}</p>
+      <p className="font-semibold mt-1 lg:text-[15px] md:text-[14px] text-[13px]">
+        {value}
+      </p>
     </div>
   );
 }
@@ -429,17 +440,21 @@ function DetailRow({
     <div
       className="
 flex
-items-center
+items-start
 gap-3
-text-sm
+ lg:text-[16px] md:text-[15px] text-[14px]
 "
     >
-      <span className="text-[#aa3bff] text-xl">{icon}</span>
+      <span className="text-[#aa3bff] lg:text-xl md:text-xl text-lg">
+        {icon}
+      </span>
 
       <div>
         <p className="text-gray-500">{label}</p>
 
-        <p className="font-medium text-gray-800">{value}</p>
+        <p className="font-medium text-gray-800 lg:text-[15px] md:text-[14px] text-[13px]">
+          {value}
+        </p>
       </div>
     </div>
   );

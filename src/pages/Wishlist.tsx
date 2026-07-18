@@ -3,11 +3,14 @@ import {
   RiShoppingCartLine,
   RiDeleteBin6Line,
   RiBox3Line,
+  RiHeartLine,
 } from "react-icons/ri";
 import { useCartStore } from "../store/cartStore";
 import { toast } from "react-hot-toast";
 import type { Product } from "../types/product";
 import WishlistSkeleton from "../components/skeletons/WishlistSkeleton";
+import EmptyState from "../components/EmptyState";
+import { useNavigate } from "react-router-dom";
 
 export default function Wishlist() {
   const wishlist = useWishlistStore((state) => state.wishlist);
@@ -58,14 +61,19 @@ export default function Wishlist() {
   };
 
   const loading = useWishlistStore((state) => state.loading);
+  const navigate = useNavigate();
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold">Wishlist</h1>
+          <h1 className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-800">
+            Wishlist
+          </h1>
 
-          <p className="text-gray-500">{wishlist.length} saved items</p>
+          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+            {wishlist.length} saved items
+          </p>
         </div>
 
         <div className="flex gap-5">
@@ -76,7 +84,7 @@ export default function Wishlist() {
             aria-label="Move all wishlist items to cart"
             className={`
     flex items-center justify-center gap-3
-    rounded-xl transition
+    rounded-xl transition hover:cursor-pointer
 
     px-4 py-3
 
@@ -99,7 +107,7 @@ export default function Wishlist() {
             aria-label="Clear all wishlist items"
             className={`
     flex items-center justify-center gap-3
-    rounded-xl transition
+    rounded-xl transition hover:cursor-pointer
 
     px-4 py-3
 
@@ -119,9 +127,13 @@ export default function Wishlist() {
       {loading ? (
         <WishlistSkeleton count={3} />
       ) : wishlist.length === 0 ? (
-        <p className="text-center text-gray-500 py-10">
-          No products in wishlist
-        </p>
+        <EmptyState
+          icon={<RiHeartLine size={32} />}
+          title="Your wishlist is empty"
+          description="Save your favorite products here and find them easily later."
+          buttonText="Explore Products"
+          onClick={() => navigate("/products")}
+        />
       ) : (
         <div className="space-y-5">
           {wishlist.map((product) => {
@@ -171,7 +183,7 @@ export default function Wishlist() {
                 <div className="flex-1">
                   <a
                     href={`/products/${product.id}`}
-                    className="text-xl font-semibold"
+                    className="lg:text-[20px] md:text-[20px] text-[18px] leading-base font-semibold"
                   >
                     {product.title}
                   </a>
@@ -210,7 +222,7 @@ export default function Wishlist() {
                 flex
                 items-center
                 gap-2
-                transition
+                transition hover:cursor-pointer
 
                 ${
                   alreadyInCart
@@ -236,7 +248,7 @@ export default function Wishlist() {
                 transition
                 flex
                 items-center
-                gap-2
+                gap-2 hover:cursor-pointer
               "
                   >
                     <RiDeleteBin6Line />

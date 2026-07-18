@@ -1,6 +1,8 @@
 import { useCartStore } from "../store/cartStore";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { RiDeleteBin6Line, RiShoppingCartLine } from "react-icons/ri";
 import CartSkeleton from "../components/skeletons/CartSkeleton";
+import EmptyState from "../components/EmptyState";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const cart = useCartStore((state) => state.cart);
@@ -32,20 +34,32 @@ export default function Cart() {
 
   const loading = useCartStore((state) => state.loading);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold">Shopping Cart</h1>
+          <h1 className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-800">
+            Shopping Cart
+          </h1>
+
+          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+            {totalItems} items in cart
+          </p>
         </div>
       </div>
 
       {loading ? (
         <CartSkeleton count={3} />
       ) : cart.length === 0 ? (
-        <div>
-          <h1>Empty Cart</h1>
-        </div>
+        <EmptyState
+          icon={<RiShoppingCartLine size={32} />}
+          title="Your cart is empty"
+          description="Looks like you haven't added any products to your cart yet."
+          buttonText="Continue Shopping"
+          onClick={() => navigate("/products")}
+        />
       ) : (
         <div className="grid lg:grid-cols-[2fr_380px] gap-8 items-start">
           <div className="space-y-5">
@@ -76,14 +90,16 @@ export default function Cart() {
                 <div className="flex-1">
                   <a
                     href={`/products/${product.id}`}
-                    className="text-xl font-semibold"
+                    className="lg:text-[20px] md:text-[20px] text-[18px] leading-base font-semibold"
                   >
                     {product.title}
                   </a>
 
-                  <p className="text-gray-500 mt-2">{product.brand}</p>
+                  <p className="text-gray-500 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+                    {product.brand}
+                  </p>
 
-                  <p className="text-[#aa3bff] text-2xl font-bold mt-3">
+                  <p className="text-[#aa3bff] lg:text-[20px] md:text-[20px] text-[18px] font-bold mt-3">
                     ${product.price}
                   </p>
 
@@ -102,7 +118,7 @@ export default function Cart() {
                       className="
     w-10
     h-10
-    hover:bg-gray-100
+    hover:bg-gray-100 hover:cursor-pointer
     "
                     >
                       −
@@ -118,7 +134,7 @@ export default function Cart() {
     w-10
     h-10
     hover:bg-purple-50
-    text-[#aa3bff]
+    text-[#aa3bff] hover:cursor-pointer
     "
                     >
                       +
@@ -133,7 +149,7 @@ export default function Cart() {
   border
   border-gray-200
   hover:bg-gray-100
-  transition
+  transition hover:cursor-pointer
   "
                   >
                     <RiDeleteBin6Line size={20} />
@@ -207,7 +223,7 @@ export default function Cart() {
           rounded-xl
           font-semibold
           transition
-
+ hover:cursor-pointer
           ${
             cart.length === 0
               ? "bg-gray-200 text-gray-500 cursor-not-allowed"

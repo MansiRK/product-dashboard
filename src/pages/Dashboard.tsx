@@ -92,14 +92,16 @@ export default function Dashboard() {
       {/* Header */}
 
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3">
+        <h1 className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-800 gap-3 flex items-center">
           Welcome Back{" "}
           <span>
             <RiUserSmileLine size={30} className="text-[#aa3bff]" />
           </span>
         </h1>
 
-        <p className="text-gray-500 mt-2">Here's an overview of your store.</p>
+        <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+          Here's an overview of your store.
+        </p>
       </div>
 
       {/* Stats */}
