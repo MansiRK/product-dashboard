@@ -75,7 +75,7 @@ export default function Dashboard() {
           Failed to load dashboard data
         </h2>
 
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-1">
           Something went wrong while fetching dashboard information.
         </p>
 

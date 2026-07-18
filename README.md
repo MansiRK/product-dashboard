@@ -1,6 +1,6 @@
-# 🛒 ShopRise - E-Commerce Admin Dashboard & Product Management System
+# 🛒 ShopEase - Product Management System
 
-A modern, responsive e-commerce dashboard built with **React + TypeScript + Vite**.  
+A modern, responsive product management dashboard built with **React + TypeScript + Vite**.  
 The application provides complete product management features including product browsing, filtering, sorting, pagination, wishlist management, cart functionality, dashboard analytics, and optimized API data fetching.
 
 Designed with a focus on **clean architecture, reusable components, performance optimization, and modern React practices**.
