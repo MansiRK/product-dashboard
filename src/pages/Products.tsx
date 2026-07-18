@@ -24,6 +24,11 @@ export default function Products() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const [tempCategory, setTempCategory] = useState("");
+  const [tempPriceRange, setTempPriceRange] = useState("");
+  const [tempSort, setTempSort] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -127,18 +132,35 @@ export default function Products() {
 
   return (
     <div>
-      <div className="mb-8 flex justify-between items-center">
+      <div className="mb-8 lg:flex md:flex block justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">Products</h1>
 
           <p className="text-gray-500 mt-1">Manage and explore all products</p>
         </div>
 
-        <div className="bg-white shadow-sm px-5 py-3 rounded-xl">
+        <div className="bg-white shadow-sm px-5 py-3 rounded-xl lg:mt-0 md:mt-0 mt-3">
           <p className="text-sm text-gray-500">Total Products</p>
 
           <h2 className="text-2xl font-bold text-[#aa3bff]">{totalProducts}</h2>
         </div>
+      </div>
+
+      <div className="md:hidden fixed bottom-5 left-5 right-5 z-40">
+        <button
+          onClick={() => setShowFilters(true)}
+          className="
+w-full
+bg-[#aa3bff]
+text-white
+py-3
+rounded-2xl
+shadow-lg
+font-semibold
+"
+        >
+          ⚙ Filters
+        </button>
       </div>
 
       <Filters
@@ -154,6 +176,14 @@ export default function Products() {
         setPage={setPage}
         search={search}
         setSearch={setSearch}
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+        tempCategory={tempCategory}
+        setTempCategory={setTempCategory}
+        tempPriceRange={tempPriceRange}
+        setTempPriceRange={setTempPriceRange}
+        tempSort={tempSort}
+        setTempSort={setTempSort}
       />
 
       {loading ? (

@@ -19,7 +19,6 @@ export default function ProductSkeleton({ view }: Props) {
           className={`
 bg-white
 rounded-2xl
-border
 shadow-sm
 p-5
 

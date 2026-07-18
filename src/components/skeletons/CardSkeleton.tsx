@@ -7,7 +7,6 @@ export default function CardSkeleton() {
       bg-white
       rounded-2xl
       shadow-sm
-      border
       p-6
     "
     >

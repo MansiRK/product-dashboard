@@ -21,7 +21,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
     <div
       className={
         view === "grid"
-          ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6"
+          ? " grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6"
           : "space-y-4"
       }
     >
@@ -107,7 +107,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
               h-10 w-10
               rounded-full
               bg-gray-100
-              hover:text-[#aa3bff] flex items-center justify-center hover:cursor-pointer
+              flex items-center justify-center 
               "
               >
                 <RiHeart3Line size={20} />
@@ -192,9 +192,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
             {/* Actions */}
 
             <div
-              className="
-            flex gap-6 mt-5 ps-4
-            "
+              className={` flex gap-6 mt-5 ps-4 items-center ${view === "grid" ? "justify-between" : "justify-start"}`}
             >
               <button
                 className="
@@ -219,7 +217,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
               h-10 w-10
               rounded-full
               bg-gray-100
-              hover:bg-gray-200 flex items-center justify-center hover:cursor-pointer
+               flex items-center justify-center
               "
               >
                 <RiShoppingCartLine />

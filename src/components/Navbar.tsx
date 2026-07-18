@@ -7,21 +7,38 @@ import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
 interface NavbarProps {
-  collapsed: boolean;
+  isMobile: boolean;
+  setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Navbar({ collapsed, setCollapsed }: NavbarProps) {
+export default function Navbar({
+  isMobile,
+  setMobileOpen,
+  setCollapsed,
+}: NavbarProps) {
   const cart = useCartStore((state) => state.cart);
   const wishlist = useWishlistStore((state) => state.wishlist);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const wishlistCount = wishlist.length;
 
+  const handleNavClick = () => {
+    if (isMobile) {
+      setMobileOpen(false);
+    }
+  };
+
   return (
-    <header className="bg-white shadow-sm px-8 py-4 flex items-center justify-between">
+    <header className="bg-white shadow-sm px-8 py-4 flex items-center justify-between z-10">
       <button
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={() => {
+          if (isMobile) {
+            setMobileOpen(true);
+          } else {
+            setCollapsed((prev) => !prev);
+          }
+        }}
         className="text-2xl text-gray-600 hover:text-[#aa3bff] transition cursor-pointer"
       >
         <HiOutlineMenuAlt2 />
@@ -32,6 +49,7 @@ export default function Navbar({ collapsed, setCollapsed }: NavbarProps) {
         {/* Wishlist */}
         <Link
           to="/wishlist"
+          onClick={handleNavClick}
           className="relative text-2xl text-gray-600 hover:text-[#aa3bff] transition"
         >
           <RiHeart3Line />
@@ -63,6 +81,7 @@ export default function Navbar({ collapsed, setCollapsed }: NavbarProps) {
         {/* Cart */}
         <Link
           to="/cart"
+          onClick={handleNavClick}
           className="relative text-2xl text-gray-600 hover:text-[#aa3bff] transition"
         >
           <RiShoppingCartLine />

@@ -4,6 +4,10 @@ import type { Product } from "../types/product";
 
 interface WishlistStore {
   wishlist: Product[];
+
+  loading: boolean;
+  setLoading: (value: boolean) => void;
+
   addToWishlist: (product: Product) => void;
   removeFromWishlist: (id: number) => void;
   clearWishlist: () => void;
@@ -15,6 +19,10 @@ export const useWishlistStore = create<WishlistStore>()(
   persist(
     (set, get) => ({
       wishlist: [],
+
+      loading: true,
+
+      setLoading: (value) => set({ loading: value }),
 
       addToWishlist: (product) =>
         set((state) => {
@@ -33,6 +41,7 @@ export const useWishlistStore = create<WishlistStore>()(
         set((state) => ({
           wishlist: state.wishlist.filter((item) => item.id !== id),
         })),
+
       clearWishlist: () =>
         set({
           wishlist: [],
@@ -49,12 +58,17 @@ export const useWishlistStore = create<WishlistStore>()(
           };
         }),
 
-      isWishlisted: (id) => {
-        return get().wishlist.some((item) => item.id === id);
-      },
+      isWishlisted: (id) => get().wishlist.some((item) => item.id === id),
     }),
+
     {
       name: "wishlist-storage",
+
+      onRehydrateStorage: () => {
+        return (state) => {
+          state?.setLoading(false);
+        };
+      },
     },
   ),
 );

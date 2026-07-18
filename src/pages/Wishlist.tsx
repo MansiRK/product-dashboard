@@ -7,6 +7,7 @@ import {
 import { useCartStore } from "../store/cartStore";
 import { toast } from "react-hot-toast";
 import type { Product } from "../types/product";
+import WishlistSkeleton from "../components/skeletons/WishlistSkeleton";
 
 export default function Wishlist() {
   const wishlist = useWishlistStore((state) => state.wishlist);
@@ -56,6 +57,8 @@ export default function Wishlist() {
     toast.success("Wishlist cleared");
   };
 
+  const loading = useWishlistStore((state) => state.loading);
+
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
@@ -69,8 +72,13 @@ export default function Wishlist() {
           <button
             onClick={handleMoveAll}
             disabled={wishlist.length === 0}
+            title="Move all to cart"
+            aria-label="Move all wishlist items to cart"
             className={`
-    flex items-center gap-3 px-5 py-3 rounded-xl transition
+    flex items-center justify-center gap-3
+    rounded-xl transition
+
+    px-4 py-3
 
     ${
       wishlist.length === 0
@@ -79,15 +87,21 @@ export default function Wishlist() {
     }
   `}
           >
-            <RiShoppingCartLine />
-            Move All
+            <RiShoppingCartLine size={20} />
+
+            <span className="hidden sm:block">Move All</span>
           </button>
 
           <button
             onClick={handleClearWishlist}
             disabled={wishlist.length === 0}
+            title="Clear wishlist"
+            aria-label="Clear all wishlist items"
             className={`
-    flex items-center gap-3 px-5 py-3 rounded-xl transition
+    flex items-center justify-center gap-3
+    rounded-xl transition
+
+    px-4 py-3
 
     ${
       wishlist.length === 0
@@ -96,13 +110,15 @@ export default function Wishlist() {
     }
   `}
           >
-            <RiDeleteBin6Line />
-            Clear All
+            <RiDeleteBin6Line size={20} />
+
+            <span className="hidden sm:block">Clear All</span>
           </button>
         </div>
       </div>
-
-      {wishlist.length === 0 ? (
+      {loading ? (
+        <WishlistSkeleton count={3} />
+      ) : wishlist.length === 0 ? (
         <p className="text-center text-gray-500 py-10">
           No products in wishlist
         </p>
@@ -115,14 +131,17 @@ export default function Wishlist() {
               <div
                 key={product.id}
                 className="
-      bg-white
-      rounded-2xl
-      shadow-sm
-      p-6
-      flex
-      items-center
-      gap-6 relative
-      "
+  bg-white
+  rounded-2xl
+  shadow-sm
+  p-6
+  flex
+  flex-col
+  sm:flex-row
+  lg:items-center md:items-center items-start
+  gap-6
+  relative
+  "
               >
                 {/* Discount */}
                 <span
@@ -202,7 +221,7 @@ export default function Wishlist() {
                   >
                     <RiShoppingCartLine />
 
-                    {alreadyInCart ? "Already in Cart" : "Move to Cart"}
+                    {alreadyInCart ? "Added" : "Add to Cart"}
                   </button>
 
                   <button

@@ -45,11 +45,11 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-dvh">
       {/* Left Side */}
-      <div className="hidden lg:flex w-[40%] bg-[#aa3bff] items-center justify-center text-white">
+      <div className="hidden lg:flex lg:w-2/5 bg-[#aa3bff] items-center justify-center text-white p-8">
         <div className="text-center px-10">
-          <h3 className="text-[30px] font-semibold mb-0 flex items-center justify-center gap-2 ">
+          <h3 className="text-[30px] font-semibold mb-4 flex items-center justify-center gap-2 ">
             <span>
               <img
                 src={shoppingBag}
@@ -61,16 +61,30 @@ export default function Login() {
           </h3>
           <h1 className="text-5xl font-bold mb-6">Welcome Back!</h1>
           <p className="text-md text-gray-200 ">
-            Sign in to continue managing your dashboard and access your
-            personalized workspace.
+            Securely access your ShopEase admin dashboard.
           </p>
         </div>
       </div>
 
       {/* Right Side */}
-      <div className="w-full lg:w-[60%] bg-gray-100 flex items-center justify-center">
-        <form onSubmit={handleLogin} className="p-10 w-[95%] max-w-lg">
-          <h3 className="text-[25px] font-semibold text-center text-gray-800 mb-2">
+      <div className="w-full lg:w-[60%] bg-gray-100 lg:flex flex items-center justify-center">
+        <form
+          onSubmit={handleLogin}
+          className="w-full max-w-md rounded-2xl shadow-lg p-6 sm:p-8 md:p-10"
+        >
+          <div className="lg:hidden mb-8 text-center">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#aa3bff] shadow-lg">
+              <img src={shoppingBag} alt="Shopping Bag" className="h-8 w-8" />
+            </div>
+
+            <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
+
+            <p className="mt-2 text-sm leading-6 text-gray-500">
+              Securely access your ShopEase admin dashboard.
+            </p>
+          </div>
+
+          <h3 className="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-2">
             Login
           </h3>
 

@@ -1,5 +1,6 @@
 import { useCartStore } from "../store/cartStore";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import CartSkeleton from "../components/skeletons/CartSkeleton";
 
 export default function Cart() {
   const cart = useCartStore((state) => state.cart);
@@ -29,6 +30,8 @@ export default function Cart() {
 
   const total = subtotal - discount + shipping;
 
+  const loading = useCartStore((state) => state.loading);
+
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
@@ -37,8 +40,12 @@ export default function Cart() {
         </div>
       </div>
 
-      {cart.length === 0 ? (
-        <p>No products in cart</p>
+      {loading ? (
+        <CartSkeleton count={3} />
+      ) : cart.length === 0 ? (
+        <div>
+          <h1>Empty Cart</h1>
+        </div>
       ) : (
         <div className="grid lg:grid-cols-[2fr_380px] gap-8 items-start">
           <div className="space-y-5">
@@ -47,22 +54,32 @@ export default function Cart() {
                 key={product.id}
                 className="
       bg-white
-      rounded-2xl
-      shadow-sm
-      p-6
-      flex
-      items-center
-      gap-6
+  rounded-2xl
+  shadow-sm
+  p-4
+  flex
+  flex-col
+  sm:flex-row
+  lg:items-center md:items-center items-start
+  gap-5
+  relative
       "
               >
-                <img
-                  src={product.thumbnail}
-                  alt={product.title}
-                  className="w-36 h-36 rounded-xl object-cover shrink-0"
-                />
+                <a href={`/products/${product.id}`}>
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    className="w-36 h-36 rounded-xl object-cover shrink-0"
+                  />
+                </a>
 
                 <div className="flex-1">
-                  <h2 className="text-xl font-semibold">{product.title}</h2>
+                  <a
+                    href={`/products/${product.id}`}
+                    className="text-xl font-semibold"
+                  >
+                    {product.title}
+                  </a>
 
                   <p className="text-gray-500 mt-2">{product.brand}</p>
 
@@ -78,38 +95,38 @@ export default function Cart() {
                   </p>
                 </div>
 
-                <div className="flex items-center border rounded-xl overflow-hidden">
-                  <button
-                    onClick={() => decreaseQuantity(product.id)}
-                    className="
+                <div className="lg:flex md:flex flex items-center justify-between lg:w-auto md:w-auto w-full">
+                  <div className="flex items-center border rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => decreaseQuantity(product.id)}
+                      className="
     w-10
     h-10
     hover:bg-gray-100
     "
-                  >
-                    −
-                  </button>
+                    >
+                      −
+                    </button>
 
-                  <span className="w-12 text-center font-semibold">
-                    {product.quantity}
-                  </span>
+                    <span className="w-12 text-center font-semibold">
+                      {product.quantity}
+                    </span>
 
-                  <button
-                    onClick={() => increaseQuantity(product.id)}
-                    className="
+                    <button
+                      onClick={() => increaseQuantity(product.id)}
+                      className="
     w-10
     h-10
     hover:bg-purple-50
     text-[#aa3bff]
     "
-                  >
-                    +
-                  </button>
-                </div>
-
-                <button
-                  onClick={() => removeFromCart(product.id)}
-                  className="
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(product.id)}
+                    className="
   ml-6
   p-3
   rounded-xl
@@ -118,14 +135,15 @@ export default function Cart() {
   hover:bg-gray-100
   transition
   "
-                >
-                  <RiDeleteBin6Line size={20} />
-                </button>
+                  >
+                    <RiDeleteBin6Line size={20} />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="sticky top-24">
+          <div className="stickylg:top-24">
             <div
               className="
       w-full

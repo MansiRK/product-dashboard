@@ -95,13 +95,12 @@ export default function ProductDetail() {
     <div className="space-y-8">
       {/* Header */}
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-start gap-4">
         <button
           onClick={() => navigate(-1)}
           className="
-          p-3 rounded-xl
-          bg-white shadow-sm
-          hover:bg-gray-100
+         rounded-xl text-gray-500 pt-2
+         hover:text-gray-800 hover:cursor-pointer
           "
         >
           <RiArrowLeftLine size={22} />
@@ -110,7 +109,9 @@ export default function ProductDetail() {
         <div>
           <h1 className="text-3xl font-bold text-gray-800">Product Details</h1>
 
-          <p className="text-gray-500">View complete product information</p>
+          <p className="text-gray-500 lg:mt-3">
+            View complete product information
+          </p>
         </div>
       </div>
 
@@ -142,7 +143,7 @@ export default function ProductDetail() {
               className="
               w-full
               h-full
-              object-cover
+              object-contain
               "
             />
           </div>
