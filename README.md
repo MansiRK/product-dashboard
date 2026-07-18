@@ -1,6 +1,6 @@
-# 🛒 ShopEase - Product Management System
+# 🛒 ShopEase - Ecommerce Product Management System
 
-A modern, responsive product management dashboard built with **React + TypeScript + Vite**.  
+A modern, responsive emcommerce product management dashboard built with **React + TypeScript + Vite**.  
 The application provides complete product management features including product browsing, filtering, sorting, pagination, wishlist management, cart functionality, dashboard analytics, and optimized API data fetching.
 
 Designed with a focus on **clean architecture, reusable components, performance optimization, and modern React practices**.
@@ -10,6 +10,24 @@ Designed with a focus on **clean architecture, reusable components, performance 
 ## 🚀 Live Demo
 
 https://shopease-ecommerce-8d2f.onrender.com/
+
+---
+
+## 📸 Screenshots
+
+![Login](image-5.png)
+
+![Dashboard](image.png)
+
+![Product Listing](image-1.png)
+
+![Product Detail](image-2.png)
+
+![Wishlist](image-3.png)
+
+![Cart](image-4.png)
+
+![Mobile View](image-6.png)
 
 ---
 
@@ -278,6 +296,7 @@ npm run build
 Create .env file:
 
 VITE_API_URL=your_api_url
+
 🧑‍💻 Author
 
 Mansi Kamble
@@ -294,6 +313,7 @@ MongoDB
 Next.js
 Zustand
 React Query
+
 ⭐ Future Improvements
 Authentication & Authorization
 Admin roles and permissions

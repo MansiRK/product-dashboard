@@ -50,7 +50,7 @@ export default function Navbar({
         <Link
           to="/wishlist"
           onClick={handleNavClick}
-          className="relative text-2xl text-gray-600 hover:text-[#aa3bff] transition"
+          className="relative lg:text-2xl md:text-2xl text-xl text-gray-600 hover:text-[#aa3bff] transition"
         >
           <RiHeart3Line />
 
@@ -60,13 +60,13 @@ export default function Navbar({
         absolute
         -top-2
         -right-2
-        h-5
-        min-w-[20px]
-        px-1
+        lg:h-5 md:h-5 h-4
+        lg:min-w-[20px] md:min-w-[20px] min-w-[15px]
+        lg:px-1 px-[5px]
         rounded-full
         bg-[#aa3bff]
         text-white
-        text-[11px]
+        lg:text-[11px] md:text-[11px] text-[10px]
         font-semibold
         flex
         items-center
@@ -82,7 +82,7 @@ export default function Navbar({
         <Link
           to="/cart"
           onClick={handleNavClick}
-          className="relative text-2xl text-gray-600 hover:text-[#aa3bff] transition"
+          className="relative lg:text-2xl md:text-2xl text-xl text-gray-600 hover:text-[#aa3bff] transition"
         >
           <RiShoppingCartLine />
 
@@ -92,13 +92,13 @@ export default function Navbar({
         absolute
         -top-2
         -right-2
-        h-5
-        min-w-[20px]
-        px-1
+        lg:h-5 md:h-5 h-4
+        lg:min-w-[20px] md:min-w-[20px] min-w-[15px]
+        lg:px-1 px-[5px]
         rounded-full
         bg-[#aa3bff]
         text-white
-        text-[11px]
+        lg:text-[11px] md:text-[11px] text-[10px]
         font-semibold
         flex
         items-center
