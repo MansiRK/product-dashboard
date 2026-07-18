@@ -1,73 +1,304 @@
-# React + TypeScript + Vite
+# 🛒 ShopRise - E-Commerce Admin Dashboard & Product Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive e-commerce dashboard built with **React + TypeScript + Vite**.  
+The application provides complete product management features including product browsing, filtering, sorting, pagination, wishlist management, cart functionality, dashboard analytics, and optimized API data fetching.
 
-Currently, two official plugins are available:
+Designed with a focus on **clean architecture, reusable components, performance optimization, and modern React practices**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://shopease-ecommerce-8d2f.onrender.com/
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# ✨ Features
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+## 📊 Dashboard Analytics
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Store overview dashboard
+- Total products count
+- Total stock calculation
+- Inventory value calculation
+- Average product rating
+- Low stock product tracking
+- Out of stock products
+- Cart analytics
+- Wishlist analytics
+- Category and brand statistics
+- Skeleton loading UI
+- API error handling
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+---
+
+# 🛍 Product Management
+
+## Product Listing
+
+- Fetch products from API
+- Responsive grid/list view
+- Product cards
+- Product details page
+- Dynamic routing
+- Product information display
+
+### Product Filtering
+
+- Search products
+- Category filtering
+- Price range filtering
+- Sorting options:
+  - Price Low to High
+  - Price High to Low
+  - Rating
+  - Name
+
+### Pagination
+
+- Client-side pagination
+- Dynamic page navigation
+- Optimized product rendering
+
+---
+
+# ❤️ Wishlist Features
+
+- Add products to wishlist
+- Remove products from wishlist
+- Persistent wishlist storage
+- Move single wishlist item to cart
+- Move all wishlist items to cart
+- Clear wishlist
+- Wishlist empty state UI
+
+---
+
+# 🛒 Cart Features
+
+- Add products to cart
+- Remove products from cart
+- Update quantity
+- Calculate total cart value
+- Prevent duplicate cart items
+- Move wishlist items to cart
+- Persistent cart state
+- Redirect users to cart after adding item
+
+---
+
+# 🔥 React Features Implemented
+
+## React Query
+
+Implemented **TanStack React Query** for server state management.
+
+Used for:
+
+- Product fetching
+- Product details fetching
+- Dashboard data fetching
+- Category fetching
+
+Benefits:
+
+- Automatic caching
+- Background refetching
+- Loading states
+- Error handling
+- Reduced unnecessary API calls
+
+---
+
+## Zustand State Management
+
+Implemented Zustand for global client state.
+
+Used for:
+
+- Cart management
+- Wishlist management
+
+Features:
+
+- Lightweight state management
+- Persistent storage using localStorage
+- Global state sharing without prop drilling
+
+---
+
+# 🎨 UI / UX Features
+
+- Fully responsive design
+- Mobile filter drawer
+- Skeleton loading states
+- Empty state components
+- Toast notifications
+- Smooth transitions
+- Modern card-based UI
+- Responsive typography
+- Adaptive layouts
+
+---
+
+# 🧰 Tech Stack
+
+## Frontend
+
+- React.js
+- TypeScript
+- Vite
+- React Router DOM
+- Tailwind CSS
+
+## State Management
+
+- Zustand
+
+## Server State Management
+
+- TanStack React Query
+
+## UI Libraries
+
+- React Icons
+- React Hot Toast
+
+## API
+
+- Axios
+- REST API
+
+## Development Tools
+
+- ESLint
+- Git
+- GitHub
+
+---
+
+# 📁 Project Structure
+
+src
+│
+├── components
+│ ├── ProductCard
+│ ├── Filters
+│ ├── StatCard
+│ ├── EmptyState
+│ └── Skeleton Components
+│
+├── pages
+│ ├── Dashboard
+│ ├── Products
+│ ├── ProductDetail
+│ ├── Cart
+│ └── Wishlist
+│
+├── services
+│ ├── api.ts
+│ ├── productService.ts
+│ └── dashboardService.ts
+│
+├── store
+│ ├── cartStore.ts
+│ └── wishlistStore.ts
+│
+├── types
+│ └── product.ts
+│
+└── main.tsx
+
+---
+
+# ⚡ Performance Optimizations
+
+Implemented:
+
+- React Query caching
+- Query-based API management
+- Debounced search
+- Conditional rendering
+- Lazy data fetching
+- Skeleton loaders
+- Optimized component rendering
+
+---
+
+# 🔐 Error Handling
+
+Implemented:
+
+- API failure handling
+- React Query error states
+- Empty data handling
+- Loading states
+- User feedback using toast notifications
+
+---
+
+# 📱 Responsive Design
+
+Supported devices:
+
+✅ Desktop  
+✅ Tablet  
+✅ Mobile
+
+Implemented:
+
+- Responsive grids
+- Mobile bottom filter button
+- Adaptive layouts
+- Mobile-friendly cards
+
+---
+
+# 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+npm install
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+Run development server:
+
+npm run dev
+
+Build production:
+
+npm run build
+🌱 Environment Variables
+
+Create .env file:
+
+VITE_API_URL=your_api_url
+🧑‍💻 Author
+
+Mansi Kamble
+
+MERN Stack Developer
+
+Skills:
+
+React.js
+TypeScript
+Node.js
+Express.js
+MongoDB
+Next.js
+Zustand
+React Query
+⭐ Future Improvements
+Authentication & Authorization
+Admin roles and permissions
+Product CRUD operations
+Backend integration
+Payment gateway
+Order management
+Real-time notifications
