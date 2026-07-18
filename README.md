@@ -1,6 +1,6 @@
 # 🛒 ShopEase - Ecommerce Product Management System
 
-A modern, responsive emcommerce product management dashboard built with **React + TypeScript + Vite**.  
+A modern, responsive ecommerce product management dashboard built with **React + TypeScript + Vite**.  
 The application provides complete product management features including product browsing, filtering, sorting, pagination, wishlist management, cart functionality, dashboard analytics, and optimized API data fetching.
 
 Designed with a focus on **clean architecture, reusable components, performance optimization, and modern React practices**.
@@ -61,7 +61,7 @@ https://shopease-ecommerce-8d2f.onrender.com/
 - Dynamic routing
 - Product information display
 
-### Product Filtering
+## Product Filtering
 
 - Search products
 - Category filtering
@@ -72,7 +72,7 @@ https://shopease-ecommerce-8d2f.onrender.com/
   - Rating
   - Name
 
-### Pagination
+## Pagination
 
 - Client-side pagination
 - Dynamic page navigation
@@ -101,13 +101,13 @@ https://shopease-ecommerce-8d2f.onrender.com/
 - Prevent duplicate cart items
 - Move wishlist items to cart
 - Persistent cart state
-- Redirect users to cart after adding item
+- Redirect users to cart after adding items
 
 ---
 
 # 🔥 React Features Implemented
 
-## React Query
+## TanStack React Query
 
 Implemented **TanStack React Query** for server state management.
 
@@ -124,13 +124,13 @@ Benefits:
 - Background refetching
 - Loading states
 - Error handling
-- Reduced unnecessary API calls
+- Reduced unnecessary API requests
 
 ---
 
 ## Zustand State Management
 
-Implemented Zustand for global client state.
+Implemented Zustand for global client state management.
 
 Used for:
 
@@ -154,12 +154,12 @@ Features:
 - Toast notifications
 - Smooth transitions
 - Modern card-based UI
-- Responsive typography
-- Adaptive layouts
+- Responsive layouts
+- Adaptive components
 
 ---
 
-## 🌐 API Integration
+# 🌐 API Integration
 
 This project uses **DummyJSON API** as a mock REST API service for fetching product data.
 
@@ -168,8 +168,7 @@ Implemented API operations:
 - Fetch products
 - Fetch product details by ID
 - Fetch product categories
-- Product search and filtering
-- Sorting and pagination handling
+- Product data handling
 
 The frontend handles:
 
@@ -194,6 +193,7 @@ The frontend handles:
 ## State Management
 
 - Zustand
+- Zustand Persist Middleware
 
 ## Server State Management
 
@@ -203,17 +203,13 @@ The frontend handles:
 
 - React Icons
 - React Hot Toast
-
-## API
-
-- Axios
-- REST API
+- React Loading Skeleton
 
 ## API & Data Handling
 
 - DummyJSON REST API
 - Axios
-- TanStack React Query
+- REST API integration
 - Client-side filtering and pagination
 
 ## Development Tools
@@ -226,35 +222,37 @@ The frontend handles:
 
 # 📁 Project Structure
 
+```
 src
 │
 ├── components
-│ ├── ProductCard
-│ ├── Filters
-│ ├── StatCard
-│ ├── EmptyState
-│ └── Skeleton Components
+│   ├── ProductCard
+│   ├── Filters
+│   ├── StatCard
+│   ├── EmptyState
+│   └── Skeleton Components
 │
 ├── pages
-│ ├── Dashboard
-│ ├── Products
-│ ├── ProductDetail
-│ ├── Cart
-│ └── Wishlist
+│   ├── Dashboard
+│   ├── Products
+│   ├── ProductDetail
+│   ├── Cart
+│   └── Wishlist
 │
 ├── services
-│ ├── api.ts
-│ ├── productService.ts
-│ └── dashboardService.ts
+│   ├── api.ts
+│   ├── productService.ts
+│   └── dashboardService.ts
 │
 ├── store
-│ ├── cartStore.ts
-│ └── wishlistStore.ts
+│   ├── cartStore.ts
+│   └── wishlistStore.ts
 │
 ├── types
-│ └── product.ts
+│   └── product.ts
 │
 └── main.tsx
+```
 
 ---
 
@@ -266,9 +264,9 @@ Implemented:
 - Query-based API management
 - Debounced search
 - Conditional rendering
-- Lazy data fetching
-- Skeleton loaders
 - Optimized component rendering
+- Skeleton loaders
+- Efficient state updates
 
 ---
 
@@ -297,11 +295,92 @@ Implemented:
 - Responsive grids
 - Mobile bottom filter button
 - Adaptive layouts
-- Mobile-friendly cards
+- Mobile-friendly product cards
 
 ---
 
-## Data Handling Approach
+# 📦 Installation & Setup
+
+Follow the steps below to run this project locally.
+
+## Prerequisites
+
+Make sure you have installed:
+
+- Node.js (v18 or above)
+- npm or yarn
+- Git
+
+## Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+Navigate into the project:
+
+```bash
+cd shopease
+```
+
+## Install Dependencies
+
+Using npm:
+
+```bash
+npm install
+```
+
+or using yarn:
+
+```bash
+yarn install
+```
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_API_URL=https://dummyjson.com
+```
+
+## Run Development Server
+
+```bash
+npm run dev
+```
+
+Application will run at:
+
+```
+http://localhost:5173
+```
+
+## Build Production
+
+```bash
+npm run build
+```
+
+## Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Available Scripts
+
+| Command         | Description              |
+| --------------- | ------------------------ |
+| npm run dev     | Start development server |
+| npm run build   | Create production build  |
+| npm run preview | Preview production build |
+| npm run lint    | Run ESLint checks        |
+
+---
+
+# 🌱 Data Handling Approach
 
 Since DummyJSON is used as a mock API, advanced filtering, sorting, and pagination logic are implemented on the frontend after fetching product data.
 
@@ -309,55 +388,39 @@ In a production application, these operations would typically be handled through
 
 ---
 
-# 📦 Installation
+# 🔮 Future Improvements
 
-Clone the repository:
+- Authentication & Authorization
+- JWT based login system
+- Admin roles and permissions
+- Product CRUD operations
+- Backend API integration
+- Database integration
+- Payment gateway
+- Order management
+- Real-time notifications
 
-```bash
-git clone <repository-url>
-```
+---
 
-Install dependencies:
+# 🧑‍💻 Author
 
-npm install
-
-Run development server:
-
-npm run dev
-
-Build production:
-
-npm run build
-
-🌱 Environment Variables
-
-Create .env file:
-
-VITE_API_URL=your_api_url
-
-🧑‍💻 Author
-
-Mansi Kamble
+**Mansi Kamble**
 
 MERN Stack Developer
 
 Skills:
 
-React.js
-TypeScript
-Node.js
-Express.js
-MongoDB
-Next.js
-Zustand
-React Query
+- React.js
+- TypeScript
+- Node.js
+- Express.js
+- MongoDB
+- Next.js
+- Zustand
+- TanStack React Query
 
-⭐ Future Improvements
+---
 
-Authentication & Authorization
-Admin roles and permissions
-Product CRUD operations
-Backend integration
-Payment gateway
-Order management
-Real-time notifications
+## ⭐ License
+
+This project is created for learning and portfolio purposes.
