@@ -54,8 +54,8 @@ export default function EmptyState({
           onClick={onClick}
           className="
           mt-6
-          px-6
-          py-3
+          lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
           rounded-xl
           bg-[#aa3bff]
           text-white

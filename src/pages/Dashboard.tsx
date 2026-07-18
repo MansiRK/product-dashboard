@@ -22,9 +22,8 @@ export default function Dashboard() {
   const cart = useCartStore((state) => state.cart);
   const wishlist = useWishlistStore((state) => state.wishlist);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["dashboard"],
-
     queryFn: fetchDashboardData,
   });
 
@@ -71,8 +70,27 @@ export default function Dashboard() {
 
   if (isError) {
     return (
-      <div className="p-10 text-center text-red-500">
-        Failed to load dashboard data
+      <div className="p-10 text-center">
+        <h2 className="text-xl font-semibold text-red-500">
+          Failed to load dashboard data
+        </h2>
+
+        <p className="text-gray-500 mt-2">
+          Something went wrong while fetching dashboard information.
+        </p>
+
+        <button
+          onClick={() => refetch()}
+          className="
+        mt-5
+        px-5 py-2
+        rounded-xl
+        bg-[#aa3bff]
+        text-white
+        "
+        >
+          Try Again
+        </button>
       </div>
     );
   }

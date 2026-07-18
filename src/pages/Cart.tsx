@@ -70,7 +70,7 @@ export default function Cart() {
       bg-white
   rounded-2xl
   shadow-sm
-  p-4
+  lg:p-5 md:p-4 p-3
   flex
   flex-col
   sm:flex-row
@@ -116,8 +116,8 @@ export default function Cart() {
                     <button
                       onClick={() => decreaseQuantity(product.id)}
                       className="
-    w-10
-    h-10
+    lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
     hover:bg-gray-100 hover:cursor-pointer
     "
                     >
@@ -144,7 +144,8 @@ export default function Cart() {
                     onClick={() => removeFromCart(product.id)}
                     className="
   ml-6
-  p-3
+  lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
   rounded-xl
   border
   border-gray-200
@@ -166,25 +167,27 @@ export default function Cart() {
       bg-white
       rounded-2xl
       shadow-sm
-      p-6
+      lg:p-5 md:p-4 p-3
     "
             >
-              <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
+              <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-6">
+                Order Summary
+              </h2>
 
               <div className="space-y-4">
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-gray-600 lg:text-[16px] md:text-[16px] text-[14px]">
                   <span>Total Items</span>
 
                   <span className="font-semibold">{totalItems}</span>
                 </div>
 
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-gray-600 lg:text-[16px] md:text-[16px] text-[14px]">
                   <span>Subtotal</span>
 
                   <span className="font-semibold">${subtotal.toFixed(2)}</span>
                 </div>
 
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-gray-600 lg:text-[16px] md:text-[16px] text-[14px]">
                   <span>Discount</span>
 
                   <span className="text-green-600 font-semibold">
@@ -192,7 +195,7 @@ export default function Cart() {
                   </span>
                 </div>
 
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-gray-600 lg:text-[16px] md:text-[16px] text-[14px]">
                   <span>Shipping</span>
 
                   <span className="font-semibold">
@@ -200,7 +203,7 @@ export default function Cart() {
                   </span>
                 </div>
 
-                <p className="text-sm text-green-600">
+                <p className="text-sm text-green-600 lg:text-[16px] md:text-[16px] text-[14px]">
                   {shipping === 0
                     ? "🎉 Free Shipping Applied"
                     : "Free Shipping on orders above $100"}
@@ -208,7 +211,7 @@ export default function Cart() {
 
                 <hr />
 
-                <div className="flex justify-between text-2xl font-bold">
+                <div className="flex justify-between lg:text-2xl md:text-xl text-lg font-bold">
                   <span>Total</span>
 
                   <span className="text-[#aa3bff]">${total.toFixed(2)}</span>
@@ -219,11 +222,11 @@ export default function Cart() {
                   className={`
           mt-6
           w-full
-          py-4
+          lg:py-3 py-2
           rounded-xl
           font-semibold
           transition
- hover:cursor-pointer
+ hover:cursor-pointer lg:text-[16px] md:text-[16px] text-[14px]
           ${
             cart.length === 0
               ? "bg-gray-200 text-gray-500 cursor-not-allowed"

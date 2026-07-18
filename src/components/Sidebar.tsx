@@ -83,7 +83,7 @@ export default function Sidebar({
           <NavLink
             to="/dashboard"
             onClick={handleNavClick}
-            className={`flex items-center py-3 px-5 rounded-lg hover:bg-gray-100 mx-2
+            className={`flex items-center lg:py-3 md:py-3 py-2 px-5 px-5 rounded-lg hover:bg-gray-100 mx-2
 ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           >
             <RiDashboardLine size={22} />
@@ -94,7 +94,7 @@ ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           <NavLink
             to="/products"
             onClick={handleNavClick}
-            className={`flex items-center py-3 px-5 rounded-lg hover:bg-gray-100 mx-2
+            className={`flex items-center lg:py-3 md:py-3 py-2 px-5 px-5 rounded-lg hover:bg-gray-100 mx-2
  ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           >
             <FiPackage size={22} />
@@ -105,7 +105,7 @@ ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           <NavLink
             to="/wishlist"
             onClick={handleNavClick}
-            className={`flex items-center py-3 px-5 rounded-lg hover:bg-gray-100 mx-2
+            className={`flex items-center lg:py-3 md:py-3 py-2 px-5 px-5 rounded-lg hover:bg-gray-100 mx-2
   ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           >
             <RiHeart3Line size={22} />
@@ -115,7 +115,7 @@ ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           <NavLink
             to="/cart"
             onClick={handleNavClick}
-            className={`flex items-center py-3 px-5 rounded-lg hover:bg-gray-100 mx-2
+            className={`flex items-center lg:py-3 md:py-3 py-2 px-5 rounded-lg hover:bg-gray-100 mx-2
   ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
           >
             <RiShoppingCartLine size={22} />
@@ -127,7 +127,7 @@ ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
       {/* Bottom */}
       <button
         onClick={handleLogout}
-        className={`flex items-center py-3 px-5 rounded-lg text-red-800 hover:bg-gray-100 mx-2 mt-2 hover:cursor-pointer
+        className={`flex items-center lg:py-3 md:py-3 py-2 px-5 px-5 rounded-lg text-red-800 hover:bg-gray-100 mx-2 mt-2 hover:cursor-pointer
   ${collapsed && !isMobile ? "justify-center" : "gap-3"}`}
       >
         <RiLogoutBoxLine size={22} />

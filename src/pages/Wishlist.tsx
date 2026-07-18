@@ -25,7 +25,7 @@ export default function Wishlist() {
 
   const handleAddToCart = (product: Product) => {
     if (isCart(product.id)) {
-      toast("Already in cart");
+      navigate("/cart");
       return;
     }
 
@@ -83,10 +83,10 @@ export default function Wishlist() {
             title="Move all to cart"
             aria-label="Move all wishlist items to cart"
             className={`
-    flex items-center justify-center gap-3
+    flex items-center justify-center gap-2
     rounded-xl transition hover:cursor-pointer
-
-    px-4 py-3
+lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
 
     ${
       wishlist.length === 0
@@ -106,14 +106,14 @@ export default function Wishlist() {
             title="Clear wishlist"
             aria-label="Clear all wishlist items"
             className={`
-    flex items-center justify-center gap-3
+   flex items-center justify-center gap-2
     rounded-xl transition hover:cursor-pointer
-
-    px-4 py-3
+lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
 
     ${
       wishlist.length === 0
-        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+        ? "bg-gray-100 text-gray-400 cursor-not-allowed "
         : "border border-gray-200 hover:bg-gray-100"
     }
   `}
@@ -146,12 +146,12 @@ export default function Wishlist() {
   bg-white
   rounded-2xl
   shadow-sm
-  p-6
+  lg:p-5 md:p-4 p-3
   flex
   flex-col
   sm:flex-row
   lg:items-center md:items-center items-start
-  gap-6
+  lg:gap-6 md:gap-5 gap-4
   relative
   "
               >
@@ -188,13 +188,15 @@ export default function Wishlist() {
                     {product.title}
                   </a>
 
-                  <p className="text-gray-500 mt-2">{product.brand}</p>
+                  <p className="text-gray-500 lg:mt-2 md:mt-2 mt-1 lg:text-[18px] md:text-[18px] text-[16px]">
+                    {product.brand}
+                  </p>
 
-                  <p className="text-[#aa3bff] text-2xl font-bold mt-3">
+                  <p className="text-[#aa3bff] lg:text-2xl md:text-xl text-lg font-bold mt-3">
                     ${product.price}
                   </p>
 
-                  <div className="flex items-center gap-5 mt-2">
+                  <div className="flex items-center gap-5 lg:mt-2 md:mt-2 mt-1">
                     <span className="text-yellow-500 font-medium">
                       ★ {product.rating}
                     </span>
@@ -213,34 +215,33 @@ export default function Wishlist() {
                 {/* Actions */}
                 <div className="flex gap-3">
                   <button
-                    disabled={alreadyInCart}
                     onClick={() => handleAddToCart(product)}
                     className={`
-                px-5
-                py-3
+                lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
                 rounded-xl
                 flex
                 items-center
                 gap-2
                 transition hover:cursor-pointer
 
-                ${
-                  alreadyInCart
-                    ? "bg-purple-100 text-[#aa3bff] cursor-not-allowed"
-                    : "bg-[#aa3bff] text-white hover:bg-purple-700"
-                }
+                  ${
+                    alreadyInCart
+                      ? "bg-purple-100 text-[#aa3bff] hover:bg-purple-200"
+                      : "bg-[#aa3bff] text-white hover:bg-purple-700"
+                  }
               `}
                   >
                     <RiShoppingCartLine />
 
-                    {alreadyInCart ? "Added" : "Add to Cart"}
+                    {alreadyInCart ? "Go to Cart" : "Add to Cart"}
                   </button>
 
                   <button
                     onClick={() => removeFromWishlist(product.id)}
                     className="
-                px-5
-                py-3
+                lg:text-[15px] md:text-[15px] text-[14px]
+    lg:px-3 md:px-3 px-2 py-2
                 rounded-xl
                 border
                 border-gray-200

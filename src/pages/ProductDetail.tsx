@@ -67,18 +67,10 @@ export default function ProductDetail() {
     : false;
 
   const handleAddToCart = () => {
-    if (isError) {
-      return (
-        <div className="p-10 text-center text-red-500">
-          Failed to load product details
-        </div>
-      );
-    }
-
     if (!product) return;
 
     if (isInCart) {
-      toast("Already in cart");
+      navigate("/cart");
       return;
     }
 
@@ -88,6 +80,33 @@ export default function ProductDetail() {
 
   if (isLoading) {
     return <ProductDetailSkeleton />;
+  }
+
+  if (isError) {
+    return (
+      <div className="p-10 text-center">
+        <h2 className="text-xl font-semibold text-red-500">
+          Failed to load product details
+        </h2>
+
+        <p className="text-gray-500 mt-2">
+          Something went wrong while fetching this product.
+        </p>
+
+        <button
+          onClick={() => navigate(-1)}
+          className="
+        mt-5
+        px-5 py-2
+        rounded-xl
+        bg-[#aa3bff]
+        text-white
+        "
+        >
+          Go Back
+        </button>
+      </div>
+    );
   }
 
   if (!product) {
@@ -261,14 +280,14 @@ export default function ProductDetail() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4">
+            <div className="flex lg:gap-6 md:gap-4 gap-2">
               <button
                 onClick={handleWishlist}
-                className={`flex-1 lg:h-14 md:h-14 h-12 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:cursor-pointer
+                className={`flex-1 p-3 rounded-2xl lg:text-[16px] md:text-[15px] text-[14px] font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:cursor-pointer
       ${
         isWishlisted
           ? "bg-white border border-purple-200 text-[#aa3bff]"
-          : "border-2 bg-purple-50 border-purple-300 text-[#aa3bff]"
+          : "border bg-purple-50 border-purple-300 text-[#aa3bff]"
       }`}
               >
                 {isWishlisted ? (
@@ -282,22 +301,21 @@ export default function ProductDetail() {
 
               <button
                 onClick={handleAddToCart}
-                disabled={isInCart}
                 className={`
-    flex-1 lg:h-14 md:h-14 h-12 rounded-2xl font-semibold
+    flex-1 p-3 rounded-2xl font-semibold
     flex items-center justify-center gap-2
-    transition-all duration-300
+    transition-all duration-300 lg:text-[16px] md:text-[15px] text-[14px]
 
     ${
       isInCart
-        ? "bg-purple-100 text-[#aa3bff] border border-purple-300 cursor-not-allowed"
+        ? "bg-purple-100 text-[#aa3bff] border border-purple-300 hover:bg-purple-200 hover:cursor-pointer"
         : "bg-[#aa3bff] text-white hover:bg-purple-700 hover:cursor-pointer"
     }
   `}
               >
                 <RiShoppingCartLine size={20} />
 
-                {isInCart ? "Added" : "Add to Cart"}
+                {isInCart ? "Go to Cart" : "Add to Cart"}
               </button>
             </div>
           </div>

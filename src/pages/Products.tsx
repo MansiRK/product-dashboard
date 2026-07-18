@@ -24,7 +24,7 @@ export default function Products() {
   const [tempPriceRange, setTempPriceRange] = useState("");
   const [tempSort, setTempSort] = useState("");
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["products", page, category, sort, priceRange, debouncedSearch],
 
     queryFn: () =>
@@ -50,7 +50,7 @@ export default function Products() {
     return () => clearTimeout(timer);
   }, [search]);
 
-  const { data: categoryData } = useQuery({
+  const { data: categoryData, isError: categoryError } = useQuery({
     queryKey: ["categories"],
 
     queryFn: async () => {
@@ -60,14 +60,32 @@ export default function Products() {
     },
   });
 
-  const categories = categoryData ?? [];
-
+  const categories = categoryError ? [] : (categoryData ?? []);
   const totalPages = Math.ceil(totalProducts / LIMIT);
 
   if (isError) {
     return (
-      <div className="p-10 text-center text-red-500">
-        Failed to load products
+      <div className="p-10 text-center">
+        <h2 className="text-xl font-semibold text-red-500">
+          Failed to load products
+        </h2>
+
+        <p className="text-gray-500 mt-2">
+          Something went wrong while fetching products.
+        </p>
+
+        <button
+          onClick={() => refetch()}
+          className="
+        mt-5
+        px-5 py-2
+        rounded-xl
+        bg-[#aa3bff]
+        text-white
+        "
+        >
+          Try Again
+        </button>
       </div>
     );
   }
