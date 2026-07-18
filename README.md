@@ -315,7 +315,7 @@ Make sure you have installed:
 ## Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:MansiRK/product-dashboard.git
 ```
 
 Navigate into the project:
