@@ -50,9 +50,11 @@ export default function Sidebar({
     ${
       isMobile
         ? `fixed top-0 left-0 z-50 h-screen ${
-            mobileOpen ? "translate-x-0 w-64" : "-translate-x-full w-64"
+            mobileOpen
+              ? "translate-x-0 lg:w-64 w-[70%]"
+              : "-translate-x-full lg:w-64 w-[70%]"
           }`
-        : `h-screen ${collapsed ? "w-20" : "w-64"}`
+        : `h-screen ${collapsed ? "w-20" : "lg:w-64 w-[70%]"}`
     }
   `}
     >

@@ -30,7 +30,7 @@ export default function Navbar({
   };
 
   return (
-    <header className="bg-white shadow-sm px-8 py-4 flex items-center justify-between z-10">
+    <header className="bg-white shadow-sm px-6 py-4 flex items-center justify-between z-10">
       <button
         onClick={() => {
           if (isMobile) {

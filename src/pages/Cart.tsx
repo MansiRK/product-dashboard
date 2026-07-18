@@ -44,7 +44,7 @@ export default function Cart() {
             Shopping Cart
           </h1>
 
-          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+          <p className="text-gray-500 lg:mt-3 mt-1 lg:text-[16px] md:text-[15px] text-[14px]">
             {totalItems} items in cart
           </p>
         </div>
@@ -99,11 +99,11 @@ export default function Cart() {
                     {product.brand}
                   </p>
 
-                  <p className="text-[#aa3bff] lg:text-[20px] md:text-[20px] text-[18px] font-bold mt-3">
+                  <p className="text-[#aa3bff] lg:text-2xl md:text-xl text-lg font-bold mt-3">
                     ${product.price}
                   </p>
 
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-gray-500 mt-2 lg:text-[20px] md:text-[18px] text-[16px]">
                     Total:
                     <span className="font-semibold text-gray-800 ml-2">
                       ${(product.price * product.quantity).toFixed(2)}
@@ -222,7 +222,7 @@ export default function Cart() {
                   className={`
           mt-6
           w-full
-          lg:py-3 py-2
+         py-3
           rounded-xl
           font-semibold
           transition

@@ -70,7 +70,7 @@ export default function Products() {
           Failed to load products
         </h2>
 
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-1">
           Something went wrong while fetching products.
         </p>
 
@@ -98,7 +98,7 @@ export default function Products() {
             Products
           </h1>
 
-          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+          <p className="text-gray-500 lg:mt-3 mt-1 lg:text-[16px] md:text-[15px] text-[14px]">
             Manage and explore all products
           </p>
         </div>

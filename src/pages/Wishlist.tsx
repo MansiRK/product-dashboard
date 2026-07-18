@@ -4,6 +4,7 @@ import {
   RiDeleteBin6Line,
   RiBox3Line,
   RiHeartLine,
+  RiStarFill,
 } from "react-icons/ri";
 import { useCartStore } from "../store/cartStore";
 import { toast } from "react-hot-toast";
@@ -71,7 +72,7 @@ export default function Wishlist() {
             Wishlist
           </h1>
 
-          <p className="text-gray-500 lg:mt-3 mt-2 lg:text-[16px] md:text-[15px] text-[14px]">
+          <p className="text-gray-500 mt-1 lg:text-[16px] md:text-[15px] text-[14px]">
             {wishlist.length} saved items
           </p>
         </div>
@@ -188,7 +189,7 @@ lg:text-[15px] md:text-[15px] text-[14px]
                     {product.title}
                   </a>
 
-                  <p className="text-gray-500 lg:mt-2 md:mt-2 mt-1 lg:text-[18px] md:text-[18px] text-[16px]">
+                  <p className="text-gray-500 lg:mt-2 md:mt-2 mt-1 lg:text-[16px] md:text-[15px] text-[14px]">
                     {product.brand}
                   </p>
 
@@ -196,15 +197,15 @@ lg:text-[15px] md:text-[15px] text-[14px]
                     ${product.price}
                   </p>
 
-                  <div className="flex items-center gap-5 lg:mt-2 md:mt-2 mt-1">
-                    <span className="text-yellow-500 font-medium">
-                      ★ {product.rating}
+                  <div className="flex items-center gap-2 lg:mt-2 md:mt-2 mt-1">
+                    <RiStarFill className="text-yellow-500" size={16} />{" "}
+                    <span className="text-yellow-500 lg:text-[14px] md:text-[14px] text-[12px] font-medium ">
+                      {product.rating}
                     </span>
-
                     <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-xl">
                       <RiBox3Line className="text-green-600" size={18} />
 
-                      <span className="text-sm text-green-600">
+                      <span className=" text-green-600 lg:text-[14px] md:text-[14px] text-[12px]">
                         {" "}
                         {product.stock} in stock
                       </span>

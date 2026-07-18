@@ -202,7 +202,7 @@ export default function ProductCard({ products, view }: ProductCardProps) {
               <button
                 className="
               flex items-center gap-2
-              px-4 py-2
+              px-4 py-3
               rounded-xl 
               bg-[#aa3bff]
               text-white

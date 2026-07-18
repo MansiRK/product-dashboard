@@ -89,7 +89,7 @@ export default function ProductDetail() {
           Failed to load product details
         </h2>
 
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-1">
           Something went wrong while fetching this product.
         </p>
 
